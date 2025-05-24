@@ -14,6 +14,8 @@ export class CreateUserUseCase {
       throw new Error("O usuário já existe.")
     }
     
-    await this.usersRepository.save(data)
+    const user = new User(data)
+    
+    await this.usersRepository.save(user)
   }
 }
