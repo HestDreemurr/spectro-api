@@ -10,13 +10,13 @@ export class CreateUserController {
     const { name, email, password } = request.body
     
     try {
-      await this.createUserUseCase.execute({
+      const { token } = await this.createUserUseCase.execute({
         name,
         email,
         password
       })
       
-      return response.status(201).send("Usuário criado com sucesso.")
+      return response.status(201).json({ token })
     } catch (err) {
       return response.status(400).json({
         message: err.message ?? "Erro inesperado."

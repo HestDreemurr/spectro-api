@@ -1,10 +1,12 @@
 import { IUsersRepository } from "../../repositories/IUsersRepository"
 import { ICreateUserRequestDTO } from "./CreateUserDTO"
+import { IJwtLibrary } from "../../libraries/IJwtLibrary"
 import User from "../../entities/User"
 
 export class CreateUserUseCase {
   constructor(
-    private usersRepository: IUsersRepository
+    private usersRepository: IUsersRepository,
+    private jwtLibrary: IJwtLibrary
   ) {}
   
   async execute(data: ICreateUserRequestDTO) {
@@ -17,5 +19,9 @@ export class CreateUserUseCase {
     const user = new User(data)
     
     await this.usersRepository.save(user)
+    
+    const token = this.jwtLibrary.generateToken(user.id)
+    
+    return { token }
   }
 }
