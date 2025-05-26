@@ -1,4 +1,5 @@
 import { uuid } from "uuidv4"
+import bcrypt from "bcryptjs"
 
 export default class User {
   public readonly id: string
@@ -13,5 +14,8 @@ export default class User {
     if (!id) {
       this.id = uuid()
     }
+    
+    const salt = bcrypt.genSaltSync(10)
+    this.password = bcrypt.hashSync(props.password, salt)
   }
 }
