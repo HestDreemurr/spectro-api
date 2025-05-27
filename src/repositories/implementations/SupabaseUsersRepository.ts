@@ -12,7 +12,7 @@ export class SupabaseUsersRepository implements IUsersRepository {
     if (error) {
       throw error
     }
-      
+    
     return data[0]
   }
   

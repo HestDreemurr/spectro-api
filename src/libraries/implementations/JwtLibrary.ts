@@ -11,6 +11,11 @@ export class JwtLibrary implements IJwtLibrary {
   }
   
   validateToken(token: string): boolean {
-    
+    try {
+      const decoded = jwt.verify(token, secretKey)
+      return decoded
+    } catch {
+      return undefined
+    }
   }
 }
