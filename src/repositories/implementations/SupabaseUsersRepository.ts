@@ -25,4 +25,13 @@ export class SupabaseUsersRepository implements IUsersRepository {
       throw error
     }
   }
+  
+  async delete(userId: string): Promise<void> {
+    const { error } = await supabase
+      .from("users")
+      .delete()
+      .eq("id", userId)
+      
+    if (error) throw error
+  }
 }
