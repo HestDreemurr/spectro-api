@@ -1,5 +1,6 @@
 import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase"
 import { Request, Response } from "express"
+import { AuthenticateUserSchema } from "../../libraries/ZodSchemas"
 
 export class AuthenticateUserController {
   constructor(
@@ -7,13 +8,16 @@ export class AuthenticateUserController {
   ) {}
   
   async handle(request: Request, response: Response) {
-    const { email, password } = request.body
+    const body = AuthenticateUserSchema.safeParse(request.body)
+    
+    if (!body.success) {
+      return response.status(400).json({
+        message: body.error.errors[0].message
+      })
+    }
     
     try {
-      const { token } = await this.authenticateUserUseCase.execute({
-        email,
-        password
-      })
+      const { token } = await this.authenticateUserUseCase.execute(body.data)
       return response.status(200).json({ token })
     } catch (err) {
       return response.status(400).json({

@@ -26,6 +26,18 @@ export class SupabaseUsersRepository implements IUsersRepository {
     }
   }
   
+  async update(id: string, user: Partial<User>): Promise<User | void> {
+    const { data, error } = await supabase
+      .from("users")
+      .update(user)
+      .eq("id", id)
+      .select()
+      
+    if (error) throw error
+    
+    if (data) return data[0]
+  }
+  
   async delete(userId: string): Promise<void> {
     const { error } = await supabase
       .from("users")
