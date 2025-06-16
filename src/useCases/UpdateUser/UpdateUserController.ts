@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { UpdateUserUseCase } from "./UpdateUserUseCase"
 import { UpdateUserSchema } from "../../libraries/ZodSchemas"
+import { BcryptLibrary } from "../../libraries/implementations/BcryptLibrary"
 
 export class UpdateUserController {
   constructor(
@@ -10,8 +11,11 @@ export class UpdateUserController {
   async handle(request: Request, response: Response) {
     const body = UpdateUserSchema.safeParse({
       id: request.userId,
-      ...request.body
+      ...request.body,
+      password: BcryptLibrary.hash(request.body.password)
     })
+    
+    console.log(body)
     
     if (!body.success) {
       return response.status(400).json({
