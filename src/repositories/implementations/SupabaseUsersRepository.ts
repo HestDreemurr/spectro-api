@@ -9,9 +9,22 @@ export class SupabaseUsersRepository implements IUsersRepository {
       .select()
       .eq("email", email)
       
-    if (error) {
-      throw error
-    }
+    if (error) throw error
+    
+    return data[0]
+  }
+  
+  async findById(id: string): Promise<Omit<User, "password">> {
+    const { data, error } = await supabase
+      .from("users")
+      .select(`
+        id,
+        name,
+        email
+      `)
+      .eq("id", id)
+      
+    if (error) throw error
     
     return data[0]
   }
