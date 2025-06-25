@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs"
 import { IBcryptLibrary } from "../IBcryptLibrary"
 
-export class BcryptLibrary {
+export class BcryptLibrary implements IBcryptLibrary {
   static hash(password: string): string {
     if (!password) return
     

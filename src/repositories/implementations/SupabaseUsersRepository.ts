@@ -1,6 +1,6 @@
 import { IUsersRepository } from "../IUsersRepository"
 import User from "../../entities/User"
-import { supabase } from "../supabase"
+import { supabase } from "./supabase"
 
 export class SupabaseUsersRepository implements IUsersRepository {
   async findByEmail(email: string): Promise<User> {

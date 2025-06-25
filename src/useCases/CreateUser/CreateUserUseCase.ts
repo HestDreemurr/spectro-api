@@ -22,19 +22,6 @@ export class CreateUserUseCase {
     
     await this.usersRepository.save(user)
     
-    await this.mailProvider.sendMail({
-      to: {
-        name: user.name,
-        email: user.email
-      },
-      from: {
-        name: "Spectro",
-        email: "spectro@app.com"
-      },
-      subject: "Seja bem-vindo ao Spectro!",
-      body: "<p>Seja bem-vindo ao Spectro! Aproveite nossas músicas!</p>"
-    })
-    
     const token = this.jwtLibrary.generateToken(user.id)
     
     return { token }
