@@ -1,4 +1,5 @@
 import { CreateMusicUseCase } from "./CreateMusicUseCase"
+import { CreateMusicSchema } from "../../libraries/ZodSchemas"
 import { Request, Response } from "express"
 
 export class CreateMusicController {
@@ -7,11 +8,19 @@ export class CreateMusicController {
   ) {}
   
   async handle(request: Request, response: Response) {
+    const body = CreateMusicSchema.safeParse({
+      title: request.body?.title,
+      user_id: request.userId
+    })
+    
+    if (!body.success) {
+      return response.status(400).json({
+        message: body.error.errors[0].message
+      })
+    }
+    
     try {
-      await this.createMusicUseCase.execute({
-        title: request.body.title,
-        user_id: request.userId
-      }, request.file)
+      await this.createMusicUseCase.execute(body.data, request.file)
       
       return response.status(201).send()
     } catch (err) {

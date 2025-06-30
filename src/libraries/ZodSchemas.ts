@@ -42,3 +42,10 @@ export const UpdateUserSchema = z.object({
     .trim()
     .optional()
 })
+
+export const CreateMusicSchema = z.object({
+  title: z.string({ invalid_type_error: "O título da música precisa ser um texto válido.", required_error: "O título da música é obrigatório." }),
+  
+  user_id: z.string()
+    .uuid()
+})

@@ -7,7 +7,6 @@ import User from "../../entities/User"
 export class CreateUserUseCase {
   constructor(
     private usersRepository: IUsersRepository,
-    private mailProvider: IMailProvider,
     private jwtLibrary: IJwtLibrary
   ) {}
   

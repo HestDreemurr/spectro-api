@@ -12,5 +12,6 @@ export interface File {
 export interface IMusicsRepository {
   create(music: Music): Promise<void>,
   upload(music: File): Promise<string>,
-  search(query: string): Promise<Music[]>
+  search(query: string): Promise<Music[]>,
+  getUserMusics(userId: string): Promise<Music[]>
 }
