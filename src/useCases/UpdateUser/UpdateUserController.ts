@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import { UpdateUserUseCase } from "./UpdateUserUseCase"
-import { UpdateUserSchema } from "../../libraries/ZodSchemas"
-import { BcryptLibrary } from "../../libraries/implementations/BcryptLibrary"
+import { UpdateUserSchema } from "../../libraries/zod"
+import { hash } from "../../libraries/bcrypt"
 
 export class UpdateUserController {
   constructor(
@@ -12,7 +12,7 @@ export class UpdateUserController {
     const body = UpdateUserSchema.safeParse({
       id: request.userId,
       ...request.body,
-      password: BcryptLibrary.hash(request.body.password)
+      password: hash(request.body.password)
     })
     
     console.log(body)

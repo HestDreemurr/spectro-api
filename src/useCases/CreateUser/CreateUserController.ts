@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { CreateUserUseCase } from "./CreateUserUseCase"
-import { CreateUserSchema } from "../../libraries/ZodSchemas"
+import { CreateUserSchema } from "../../libraries/zod"
 
 export class CreateUserController {
   constructor(

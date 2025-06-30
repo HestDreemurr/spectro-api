@@ -1,12 +1,11 @@
 import { IUsersRepository } from "../../repositories/IUsersRepository"
-import { IJwtLibrary } from "../../libraries/IJwtLibrary"
 import { AuthenticateUserRequestDTO } from "./AuthenticateUserDTO"
+import { generateToken } from "../../libraries/jwt"
 import { compare } from "bcryptjs"
 
 export class AuthenticateUserUseCase {
   constructor(
-    private usersRepository: IUsersRepository,
-    private jwtLibrary: IJwtLibrary
+    private usersRepository: IUsersRepository
   ) {}
   
   async execute(data: AuthenticateUserRequestDTO) {
@@ -22,7 +21,7 @@ export class AuthenticateUserUseCase {
       throw new Error("Credenciais invalidas.")
     }
     
-    const token = this.jwtLibrary.generateToken(user.id)
+    const token = generateToken(user.id)
     
     return { token }
   }

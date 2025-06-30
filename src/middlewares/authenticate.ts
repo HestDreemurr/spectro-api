@@ -1,7 +1,5 @@
 import { Request, Response, NextFunction } from "express"
-import { JwtLibrary } from "../libraries/implementations/JwtLibrary"
-
-const jwt = new JwtLibrary()
+import { validateToken } from "../libraries/jwt"
 
 export function authenticateUser(request: Request, response: Response, next: NextFunction) {
   const token = request.headers.authorization?.split(" ")[1]
@@ -12,7 +10,7 @@ export function authenticateUser(request: Request, response: Response, next: Nex
     })
   }
   
-  const validToken = jwt.validateToken(token)
+  const validToken = validateToken(token)
   
   if (!validToken) {
     return response.status(400).json({

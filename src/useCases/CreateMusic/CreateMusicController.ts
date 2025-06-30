@@ -1,5 +1,5 @@
 import { CreateMusicUseCase } from "./CreateMusicUseCase"
-import { CreateMusicSchema } from "../../libraries/ZodSchemas"
+import { CreateMusicSchema } from "../../libraries/zod"
 import { Request, Response } from "express"
 
 export class CreateMusicController {

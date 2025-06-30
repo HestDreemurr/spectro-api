@@ -1,6 +1,6 @@
 import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase"
 import { Request, Response } from "express"
-import { AuthenticateUserSchema } from "../../libraries/ZodSchemas"
+import { AuthenticateUserSchema } from "../../libraries/zod"
 
 export class AuthenticateUserController {
   constructor(

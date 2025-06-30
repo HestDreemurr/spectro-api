@@ -1,13 +1,11 @@
 import { IUsersRepository } from "../../repositories/IUsersRepository"
 import { ICreateUserRequestDTO } from "./CreateUserDTO"
-import { IMailProvider } from "../../providers/IMailProvider"
-import { IJwtLibrary } from "../../libraries/IJwtLibrary"
+import { generateToken } from "../../libraries/jwt"
 import User from "../../entities/User"
 
 export class CreateUserUseCase {
   constructor(
-    private usersRepository: IUsersRepository,
-    private jwtLibrary: IJwtLibrary
+    private usersRepository: IUsersRepository
   ) {}
   
   async execute(data: ICreateUserRequestDTO) {
@@ -21,7 +19,7 @@ export class CreateUserUseCase {
     
     await this.usersRepository.save(user)
     
-    const token = this.jwtLibrary.generateToken(user.id)
+    const token = generateToken(user.id)
     
     return { token }
   }
