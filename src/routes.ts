@@ -6,6 +6,7 @@ import { deleteUserController } from "./useCases/DeleteUser"
 import { updateUserController } from "./useCases/UpdateUser"
 import { findUserController } from "./useCases/FindUser"
 import { createMusicController } from "./useCases/CreateMusic"
+import { searchMusicController } from "./useCases/SearchMusic"
 
 import { authenticateUser } from "./middlewares/authenticate"
 
@@ -29,5 +30,7 @@ router.get("/users/find", authenticateUser, (request, response) => findUserContr
 
 // MUSICS
 router.post("/musics/create", authenticateUser, upload.single("music"), (request, response) => createMusicController.handle(request, response))
+
+router.get("/musics/search", authenticateUser, (request, response) => searchMusicController.handle(request, response))
 
 export default router

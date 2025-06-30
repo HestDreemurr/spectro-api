@@ -27,4 +27,15 @@ export class SupabaseMusicsRepository implements IMusicsRepository {
       
     return data.publicUrl
   }
+  
+  async search(query: string): Promise<Music[]> {
+    const { data, error } = await supabase
+      .from("musics")
+      .select()
+      .textSearch("title", query)
+      
+    if (error) throw error
+    
+    return data
+  }
 }
