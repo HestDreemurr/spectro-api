@@ -32,7 +32,7 @@ export class SupabaseMusicsRepository implements IMusicsRepository {
     const { data, error } = await supabase
       .from("musics")
       .select()
-      .textSearch("title", query)
+      .ilike("title", `%${query}%`)
       
     if (error) throw error
     
