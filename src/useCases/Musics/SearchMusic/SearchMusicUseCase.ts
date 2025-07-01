@@ -1,4 +1,4 @@
-import { IMusicsRepository } from "../../repositories/IMusicsRepository"
+import { IMusicsRepository } from "@/repositories/IMusicsRepository"
 import { ISearchMusicRequestDTO } from "./SearchMusicDTO"
 
 export class SearchMusicUseCase {

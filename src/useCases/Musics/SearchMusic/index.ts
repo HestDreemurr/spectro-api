@@ -1,4 +1,4 @@
-import { SupabaseMusicsRepository } from "../../repositories/implementations/SupabaseMusicsRepository"
+import { SupabaseMusicsRepository } from "@/repositories/implementations/SupabaseMusicsRepository"
 import { SearchMusicUseCase } from "./SearchMusicUseCase"
 import { SearchMusicController } from "./SearchMusicController"
 

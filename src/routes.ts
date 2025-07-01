@@ -1,19 +1,20 @@
 import { Router } from "express"
 
-import { createUserController } from "./useCases/CreateUser"
-import { authenticateUserController } from "./useCases/AuthenticateUser"
-import { deleteUserController } from "./useCases/DeleteUser"
-import { updateUserController } from "./useCases/UpdateUser"
-import { findUserController } from "./useCases/FindUser"
-import { createMusicController } from "./useCases/CreateMusic"
-import { searchMusicController } from "./useCases/SearchMusic"
-import { userMusicsController } from "./useCases/UserMusics"
+import { createUserController } from "./useCases/Users/CreateUser"
+import { authenticateUserController } from "./useCases/Users/AuthenticateUser"
+import { deleteUserController } from "./useCases/Users/DeleteUser"
+import { updateUserController } from "./useCases/Users/UpdateUser"
+import { findUserController } from "./useCases/Users/FindUser"
+import { createMusicController } from "./useCases/Musics/CreateMusic"
+import { searchMusicController } from "./useCases/Musics/SearchMusic"
+import { userMusicsController } from "./useCases/Musics/UserMusics"
 
 import { authenticateUser } from "./middlewares/authenticate"
 
 import multer from "multer"
 
 const router = Router()
+
 const storage = multer.memoryStorage()
 const upload = multer({ storage })
 

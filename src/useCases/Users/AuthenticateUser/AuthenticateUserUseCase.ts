@@ -1,6 +1,6 @@
-import { IUsersRepository } from "../../repositories/IUsersRepository"
+import { IUsersRepository } from "@/repositories/IUsersRepository"
 import { AuthenticateUserRequestDTO } from "./AuthenticateUserDTO"
-import { generateToken } from "../../libraries/jwt"
+import { generateToken } from "@/libraries/jwt"
 import { compare } from "bcryptjs"
 
 export class AuthenticateUserUseCase {

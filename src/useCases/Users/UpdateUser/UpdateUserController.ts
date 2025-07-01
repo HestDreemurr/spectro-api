@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import { UpdateUserUseCase } from "./UpdateUserUseCase"
-import { UpdateUserSchema } from "../../libraries/zod"
-import { hash } from "../../libraries/bcrypt"
+import { UpdateUserSchema } from "@/libraries/zod"
+import { hash } from "@/libraries/bcrypt"
 
 export class UpdateUserController {
   constructor(

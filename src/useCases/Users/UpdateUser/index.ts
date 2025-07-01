@@ -1,5 +1,5 @@
-import { SupabaseUsersRepository } from "../../repositories/implementations/SupabaseUsersRepository"
-import { BcryptLibrary } from "../../libraries/implementations/BcryptLibrary"
+import { SupabaseUsersRepository } from "@/repositories/implementations/SupabaseUsersRepository"
+import { BcryptLibrary } from "@/libraries/implementations/BcryptLibrary"
 import { UpdateUserUseCase } from "./UpdateUserUseCase"
 import { UpdateUserController } from "./UpdateUserController"
 

@@ -1,7 +1,7 @@
-import { IUsersRepository } from "../../repositories/IUsersRepository"
+import { IUsersRepository } from "@/repositories/IUsersRepository"
 import { ICreateUserRequestDTO } from "./CreateUserDTO"
-import { generateToken } from "../../libraries/jwt"
-import User from "../../entities/User"
+import { generateToken } from "@/libraries/jwt"
+import User from "@/entities/User"
 
 export class CreateUserUseCase {
   constructor(

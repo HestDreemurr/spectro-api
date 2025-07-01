@@ -1,7 +1,7 @@
-import { IMusicsRepository } from "../../repositories/IMusicsRepository"
-import { File } from "../../repositories/IMusicsRepository"
+import { IMusicsRepository } from "@/repositories/IMusicsRepository"
+import { File } from "@/repositories/IMusicsRepository"
 import { ICreateMusicRequestDTO } from "./CreateMusicDTO"
-import Music from "../../entities/Music"
+import Music from "@/entities/Music"
 
 export class CreateMusicUseCase {
   constructor(

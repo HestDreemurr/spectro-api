@@ -1,4 +1,4 @@
-import { SupabaseUsersRepository } from "../../repositories/implementations/SupabaseUsersRepository"
+import { SupabaseUsersRepository } from "@/repositories/implementations/SupabaseUsersRepository"
 import { CreateUserUseCase } from "./CreateUserUseCase"
 import { CreateUserController } from "./CreateUserController"
 

@@ -1,4 +1,4 @@
-import { IUsersRepository } from "../../repositories/IUsersRepository"
+import { IUsersRepository } from "@/repositories/IUsersRepository"
 import { IDeleteUserRequestDTO } from "./DeleteUserDTO"
 
 export class DeleteUserUseCase {
