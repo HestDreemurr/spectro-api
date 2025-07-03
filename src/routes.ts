@@ -8,6 +8,8 @@ import { findUserController } from "./useCases/Users/FindUser"
 import { createMusicController } from "./useCases/Musics/CreateMusic"
 import { searchMusicController } from "./useCases/Musics/SearchMusic"
 import { userMusicsController } from "./useCases/Musics/UserMusics"
+import { listMusicsController } from "./useCases/Musics/ListMusics"
+import { createPlaylistController } from "./useCases/Playlists/CreatePlaylist"
 
 import { authenticateUser } from "./middlewares/authenticate"
 
@@ -35,6 +37,13 @@ router.post("/musics/create", authenticateUser, upload.single("music"), (request
 
 router.get("/musics/search", authenticateUser, (request, response) => searchMusicController.handle(request, response))
 
-router.get("/musics/get", authenticateUser, (request, response) => userMusicsController.handle(request, response))
+router.get("/user/musics", authenticateUser, (request, response) => userMusicsController.handle(request, response))
+
+router.get("/musics", authenticateUser, (request, response) => listMusicsController.handle(request, response))
+
+
+// PLAYLISTS
+
+router.post("/playlists/create", authenticateUser, (request, response) => createPlaylistController.handle(request, response))
 
 export default router

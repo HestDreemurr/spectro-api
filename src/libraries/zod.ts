@@ -49,3 +49,10 @@ export const CreateMusicSchema = z.object({
   user_id: z.string()
     .uuid()
 })
+
+export const CreatePlaylistSchema = z.object({
+  title: z.string({ invalid_type_error: "O título da playlist precisa ser um texto válido.", required_error: "O título da playlist é obrigatório." }),
+  
+  user_id: z.string()
+    .uuid()
+})

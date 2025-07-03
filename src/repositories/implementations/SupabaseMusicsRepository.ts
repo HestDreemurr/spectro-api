@@ -49,4 +49,15 @@ export class SupabaseMusicsRepository implements IMusicsRepository {
     
     return data
   }
+  
+  async list(): Promise<Music[]> {
+    const { data, error } = await supabase
+      .from("musics")
+      .select()
+      .limit(5)
+      
+    if (error) throw error
+    
+    return data
+  }
 }
