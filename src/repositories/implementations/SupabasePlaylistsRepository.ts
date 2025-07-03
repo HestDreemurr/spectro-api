@@ -1,5 +1,6 @@
 import { IPlaylistsRepository } from "../IPlaylistsRepository"
-import Playlist from "@/entities/Playlist"
+import Playlist, { PlaylistMusic } from "@/entities/Playlist"
+import Music from "@/entities/Music"
 import { supabase } from "./supabase"
 
 export class SupabasePlaylistsRepository implements IPlaylistsRepository {
@@ -9,5 +10,36 @@ export class SupabasePlaylistsRepository implements IPlaylistsRepository {
       .insert(playlist)
       
     if (error) throw error
+  }
+  
+  async addMusic(music: PlaylistMusic): Promise<void> {
+    const { error } = await supabase
+      .from("playlist_musics")
+      .insert(music)
+      
+    if (error) throw error
+  }
+  
+  async findMusicById(playlistId: string, musicId: string): Promise<Music> {
+    const { data, error } = await supabase
+      .from("playlist_musics")
+      .select()
+      .eq("playlist_id", playlistId)
+      .eq("music_id", musicId)
+      
+    if (error) throw error 
+    
+    return data[0]
+  }
+  
+  async listMusics(playlistId: string): Promise<Music[]> {
+    const { data, error } = await supabase
+      .from("playlist_musics")
+      .select("music_id, musics(*)")
+      .eq("playlist_id", playlistId)
+      
+    if (error) throw error
+    
+    return data
   }
 }

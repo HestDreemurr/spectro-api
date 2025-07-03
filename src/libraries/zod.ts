@@ -56,3 +56,11 @@ export const CreatePlaylistSchema = z.object({
   user_id: z.string()
     .uuid()
 })
+
+export const AddMusicSchema = z.object({
+  playlist_id: z.string({ invalid_type_error: "O ID da playlist precisa ser um UUID válido.", required_error: "O ID da playlist é obrigatório." })
+    .uuid({ message: "O ID da playlist precisa ser um UUID válido." }),
+    
+  music_id: z.string({ invalid_type_error: "O ID da música precisa ser um UUID válido.", required_error: "O ID da música é obrigatório." })
+    .uuid({ message: "O ID da música precisa ser um UUID válido." })
+})

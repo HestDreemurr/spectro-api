@@ -14,3 +14,18 @@ export default class Playlist {
     }
   }
 }
+
+export class PlaylistMusic {
+  public readonly id: string
+  
+  public playlist_id: string
+  public music_id: string
+  
+  constructor(props: Omit<PlaylistMusic, "id">, id?: string) {
+    Object.assign(this, props)
+    
+    if (!id) {
+      this.id = uuid()
+    }
+  }
+}
