@@ -12,6 +12,7 @@ import { listMusicsController } from "./useCases/Musics/ListMusics"
 import { createPlaylistController } from "./useCases/Playlists/CreatePlaylist"
 import { addMusicController } from "./useCases/Playlists/AddMusic"
 import { listMusicsController as listPlaylistMusicsController } from "./useCases/Playlists/ListMusics"
+import { userPlaylistsController } from "./useCases/Playlists/UserPlaylists"
 
 import { authenticateUser } from "./middlewares/authenticate"
 
@@ -51,5 +52,7 @@ router.post("/playlists/create", authenticateUser, (request, response) => create
 router.post("/playlist/:playlist/music/:music", authenticateUser, (request, response) => addMusicController.handle(request, response))
 
 router.get("/playlist/:playlist/musics", authenticateUser, (request, response) => listPlaylistMusicsController.handle(request, response))
+  
+router.get("/user/playlists", authenticateUser, (request, response) => userPlaylistsController.handle(request, response))
 
 export default router
