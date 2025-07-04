@@ -13,6 +13,8 @@ import { createPlaylistController } from "./useCases/Playlists/CreatePlaylist"
 import { addMusicController } from "./useCases/Playlists/AddMusic"
 import { listMusicsController as listPlaylistMusicsController } from "./useCases/Playlists/ListMusics"
 import { userPlaylistsController } from "./useCases/Playlists/UserPlaylists"
+import { likeMusicController } from "./useCases/Musics/LikeMusic"
+import { likedMusicsController } from "./useCases/Musics/LikedMusics"
 
 import { authenticateUser } from "./middlewares/authenticate"
 
@@ -43,6 +45,10 @@ router.get("/musics/search", authenticateUser, (request, response) => searchMusi
 router.get("/user/musics", authenticateUser, (request, response) => userMusicsController.handle(request, response))
 
 router.get("/musics", authenticateUser, (request, response) => listMusicsController.handle(request, response))
+
+router.post("/music/:music/like", authenticateUser, (request, response) => likeMusicController.handle(request, response))
+
+router.get("/musics/liked", authenticateUser, (request, response) => likedMusicsController.handle(request, response))
 
 
 // PLAYLISTS

@@ -1,6 +1,6 @@
 import Music from "../../entities/Music"
 import { supabase } from "./supabase"
-import { IMusicsRepository, File } from "../IMusicsRepository"
+import { IMusicsRepository, File, Like } from "../IMusicsRepository"
 
 export class SupabaseMusicsRepository implements IMusicsRepository {
   async create(music: Music): Promise<void> {
@@ -55,6 +55,25 @@ export class SupabaseMusicsRepository implements IMusicsRepository {
       .from("musics")
       .select()
       .limit(5)
+      
+    if (error) throw error
+    
+    return data
+  }
+  
+  async like(like: Like): Promise<void> {
+    const { error } = await supabase
+      .from("likes")
+      .insert(like)
+      
+    if (error) throw error
+  }
+  
+  async listLikedMusics(userId: string): Promise<Music[]> {
+    const { data, error } = await supabase
+      .from("likes")
+      .select("musics(*)")
+      .eq("user_id", userId)
       
     if (error) throw error
     
