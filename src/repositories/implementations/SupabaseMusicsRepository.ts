@@ -77,6 +77,6 @@ export class SupabaseMusicsRepository implements IMusicsRepository {
       
     if (error) throw error
     
-    return data
+    return data.map(music => music.musics)
   }
 }

@@ -35,12 +35,12 @@ export class SupabasePlaylistsRepository implements IPlaylistsRepository {
   async listMusics(playlistId: string): Promise<Music[]> {
     const { data, error } = await supabase
       .from("playlist_musics")
-      .select("music_id, musics(*)")
+      .select("musics(*)")
       .eq("playlist_id", playlistId)
       
     if (error) throw error
     
-    return data
+    return data.map(music => music.musics)
   }
   
   async list(userId: string): Promise<Music[]> {

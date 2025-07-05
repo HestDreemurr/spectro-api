@@ -18,10 +18,12 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.49.8",
     "@types/express": "^5.0.2",
+    "@types/nodemailer": "^6.4.17",
     "bcryptjs": "^3.0.2",
     "dotenv": "^16.5.0",
     "jsonwebtoken": "^9.0.2",
     "multer": "^2.0.1",
+    "nodemailer": "^7.0.4",
     "uuidv4": "^6.2.13",
     "zod": "^3.25.34"
   }
