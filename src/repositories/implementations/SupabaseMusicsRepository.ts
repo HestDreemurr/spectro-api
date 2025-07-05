@@ -69,6 +69,16 @@ export class SupabaseMusicsRepository implements IMusicsRepository {
     if (error) throw error
   }
   
+  async unlike(like: Like): Promise<void> {
+    const { error } = await supabase
+      .from("likes")
+      .delete()
+      .eq("user_id", like.user_id)
+      .eq("music_id", like.music_id)
+      
+    if (error) throw error
+  }
+  
   async listLikedMusics(userId: string): Promise<Music[]> {
     const { data, error } = await supabase
       .from("likes")

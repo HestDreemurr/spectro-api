@@ -15,6 +15,7 @@ import { listMusicsController as listPlaylistMusicsController } from "./useCases
 import { userPlaylistsController } from "./useCases/Playlists/UserPlaylists"
 import { likeMusicController } from "./useCases/Musics/LikeMusic"
 import { likedMusicsController } from "./useCases/Musics/LikedMusics"
+import { unlikeMusicController } from "./useCases/Musics/UnlikeMusic"
 
 import { authenticateUser } from "./middlewares/authenticate"
 
@@ -47,6 +48,8 @@ router.get("/user/musics", authenticateUser, (request, response) => userMusicsCo
 router.get("/musics", authenticateUser, (request, response) => listMusicsController.handle(request, response))
 
 router.post("/music/:music/like", authenticateUser, (request, response) => likeMusicController.handle(request, response))
+
+router.delete("/music/:music/unlike", authenticateUser, (request, response) => unlikeMusicController.handle(request, response))
 
 router.get("/musics/liked", authenticateUser, (request, response) => likedMusicsController.handle(request, response))
 

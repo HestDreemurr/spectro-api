@@ -21,5 +21,6 @@ export interface IMusicsRepository {
   getUserMusics(userId: string): Promise<Music[]>,
   list(): Promise<Music[]>,
   like(like: Like): Promise<void>,
+  unlike(like: Like): Promise<void>,
   listLikedMusics(userId: string): Promise<Music[]>
 }
