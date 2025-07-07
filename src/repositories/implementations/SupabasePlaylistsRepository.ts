@@ -53,4 +53,14 @@ export class SupabasePlaylistsRepository implements IPlaylistsRepository {
     
     return data
   }
+  
+  async removeMusic(playlistId: string, musicId: string): Promise<void> {
+    const { error } = await supabase
+      .from("playlist_musics")
+      .delete()
+      .eq("playlist_id", playlistId)
+      .eq("music_id", musicId)
+      
+    if (error) throw error
+  }
 }
